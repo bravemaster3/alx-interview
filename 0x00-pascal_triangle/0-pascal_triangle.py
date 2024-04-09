@@ -9,7 +9,7 @@ def pascal_triangle(n):
     """pascal triangle definition"""
     from math import factorial
     if n <= 0:
-        return [[]]
+        return []
     triangle = [[0] * (i + 1) for i in range(n)]
     for i in range(n):
         triangle[i][0] = 1
