@@ -4,9 +4,7 @@ function that returns a list of lists of integers representing
 the Pascal’s triangle of n
 """
 
-
 from math import factorial
-
 
 def pascal_triangle(n):
     """pascal triangle definition"""
