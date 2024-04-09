@@ -1,13 +1,13 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 """
 function that returns a list of lists of integers representing
 the Pascal’s triangle of n
 """
 
-from math import factorial
 
 def pascal_triangle(n):
     """pascal triangle definition"""
+    from math import factorial
     if n <= 0:
         return []
     triangle = [[0] * (i + 1) for i in range(n)]
