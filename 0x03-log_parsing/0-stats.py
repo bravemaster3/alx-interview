@@ -30,6 +30,7 @@ def print_statistics() -> None:
         if (v > 0):
             print(f"{k}: {v}")
 
+
 try:
     for line in sys.stdin:
         # print(line)
@@ -40,7 +41,7 @@ try:
             file_size += int(line_split[-1])
 
         counter += 1
-        if (counter %10 == 0):
+        if (counter % 10 == 0):
             print_statistics()
 
 except (KeyboardInterrupt, EOFError):
