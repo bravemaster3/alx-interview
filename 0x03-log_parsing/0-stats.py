@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 """Script that reads stdin line by line and computes metrics:"""
 
-import sys
 import re
 
 fp = (
@@ -34,8 +33,8 @@ def print_statistics() -> None:
 
 
 try:
-    for line in sys.stdin:
-        # print(line)
+    while True:
+        line = input()
         if re.fullmatch(pattern, line):
             line_split = line.split(" ")
             if int(line_split[-2]) in status_counts:
@@ -47,8 +46,8 @@ try:
             print_statistics()
 
     # Check for EOF (end of file)
-    if counter % 10 != 0:  # If the last batch of lines is less than 10
-        print_statistics()
+    # if counter % 10 != 0:  # If the last batch of lines is less than 10
+    #     print_statistics()
 
 except (KeyboardInterrupt, EOFError):
     print_statistics()
