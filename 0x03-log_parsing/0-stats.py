@@ -46,5 +46,9 @@ try:
         if (counter % 10 == 0):
             print_statistics()
 
+    # Check for EOF (end of file)
+    if counter % 10 != 0:  # If the last batch of lines is less than 10
+        print_statistics()
+
 except (KeyboardInterrupt, EOFError):
     print_statistics()
