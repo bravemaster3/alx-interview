@@ -21,6 +21,15 @@ status_counts = {200: 0,
                  500: 0}
 file_size = 0
 counter = 0
+
+
+def print_statistics() -> None:
+    """routine for printing statistics"""
+    print(f"File size: {file_size}")
+    for k, v in status_counts.items():
+        if (v > 0):
+            print(f"{k}: {v}")
+
 try:
     for line in sys.stdin:
         # print(line)
@@ -31,14 +40,8 @@ try:
             file_size += int(line_split[-1])
 
         counter += 1
-        if (counter == 10):
-            print(f"File size: {file_size}")
-            for k, v in status_counts.items():
-                if (v > 0):
-                    print(f"{k}: {v}")
-            counter = 0
-except KeyboardInterrupt:
-    print(f"File size: {file_size}")
-    for k, v in status_counts.items():
-        if (v > 0):
-            print(f"{k}: {v}")
+        if (counter %10 == 0):
+            print_statistics()
+
+except (KeyboardInterrupt, EOFError):
+    print_statistics()
