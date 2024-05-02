@@ -32,22 +32,23 @@ def print_statistics() -> None:
             print(f"{k}: {v}")
 
 
-try:
-    while True:
-        line = input()
-        if re.fullmatch(pattern, line):
-            line_split = line.split(" ")
-            if int(line_split[-2]) in status_counts:
-                status_counts[int(line_split[-2])] += 1
-            file_size += int(line_split[-1])
+if __name__ == '__main__':
+    try:
+        while True:
+            line = input()
+            if re.fullmatch(pattern, line):
+                line_split = line.split(" ")
+                if int(line_split[-2]) in status_counts:
+                    status_counts[int(line_split[-2])] += 1
+                file_size += int(line_split[-1])
 
-        counter += 1
-        if (counter % 10 == 0):
-            print_statistics()
+            counter += 1
+            if (counter % 10 == 0):
+                print_statistics()
 
-    # Check for EOF (end of file)
-    # if counter % 10 != 0:  # If the last batch of lines is less than 10
-    #     print_statistics()
+        # Check for EOF (end of file)
+        # if counter % 10 != 0:  # If the last batch of lines is less than 10
+        #     print_statistics()
 
-except (KeyboardInterrupt, EOFError):
-    print_statistics()
+    except (KeyboardInterrupt, EOFError):
+        print_statistics()
