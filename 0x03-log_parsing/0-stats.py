@@ -36,7 +36,7 @@ def print_statistics() -> None:
 try:
     for line in sys.stdin:
         # print(line)
-        if re.fullmatch(pattern, line):
+        if re.match(pattern, line):
             line_split = line.split(" ")
             if int(line_split[-2]) in status_counts:
                 status_counts[int(line_split[-2])] += 1
