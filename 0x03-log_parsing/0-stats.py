@@ -4,12 +4,14 @@
 import sys
 import re
 
-
-pattern = (
-    r'^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3} - '
-    r'\[\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\.\d{6}\] '
-    r'"GET /projects/\d+ HTTP/1\.1" \d+ \d+$'
+fp = (
+    r'\s*(?P<ip>\S+)\s*',
+    r'\s*\[(?P<date>\d+\-\d+\-\d+ \d+:\d+:\d+\.\d+)\]',
+    r'\s*"(?P<request>[^"]*)"\s*',
+    r'\s*(?P<status_code>\S+)',
+    r'\s*(?P<file_size>\d+)'
 )
+pattern = '{}\\-{}{}{}{}\\s*'.format(fp[0], fp[1], fp[2], fp[3], fp[4])
 
 status_counts = {200: 0,
                  301: 0,
