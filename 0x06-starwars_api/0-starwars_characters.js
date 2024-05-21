@@ -1,8 +1,8 @@
 #!/usr/bin/node
-const request = require("request");
-const movie_id = process.argv[2];
-const base_url = "https://swapi-api.alx-tools.com/api/";
-const film_url = base_url + "films/" + movie_id;
+const request = require('request');
+const movieId = process.argv[2];
+const baseUrl = 'https://swapi-api.alx-tools.com/api/';
+const filmUrl = baseUrl + 'films/' + movieId;
 
 function getCharacterName(charUrl) {
   return new Promise((resolve, reject) => {
@@ -13,12 +13,12 @@ function getCharacterName(charUrl) {
         resolve(body.name);
       }
     });
-  })
+  });
 }
 
-request({ url: film_url, json: true }, async (error, response, body) => {
+request({ url: filmUrl, json: true }, async (error, response, body) => {
   if (error) {
-    console.error("Error:", error);
+    console.error('Error:', error);
     return;
   }
   for (const character of body.characters) {
@@ -26,7 +26,7 @@ request({ url: film_url, json: true }, async (error, response, body) => {
       const name = await getCharacterName(character);
       console.log(name);
     } catch (error) {
-      console.error("Error:", error);
+      console.error('Error:', error);
     }
   }
 });
