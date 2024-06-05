@@ -21,6 +21,6 @@ def makeChange(coins, total):
             coin_count += num_coins
             remaining_total -= num_coins * coin
         if remaining_total == 0:
-            break
+            return coin_count
 
-    return coin_count if remaining_total == 0 else -1
+    return -1
