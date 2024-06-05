@@ -8,11 +8,19 @@ makeChange function for computing the minimum number of coins to give change
 def makeChange(coins, total):
     """function definition"""
 
-    dp = [float('inf')] * (total + 1)
-    dp[0] = 0
+    if total <= 0:
+        return 0
+
+    coins.sort(reverse=True)  # Sort coins in descending order
+    coin_count = 0
+    remaining_total = total
 
     for coin in coins:
-        for amount in range(coin, total + 1):
-            dp[amount] = min(dp[amount], dp[amount - coin] + 1)
+        if coin <= remaining_total:
+            num_coins = remaining_total // coin
+            coin_count += num_coins
+            remaining_total -= num_coins * coin
+        if remaining_total == 0:
+            break
 
-    return (dp[total] if dp[total] != float('inf') else -1)
+    return coin_count if remaining_total == 0 else -1
