@@ -4,31 +4,50 @@ Prime game function
 """
 
 
+def is_prime(n):
+    """
+    This function checks if a number is prime.
+    """
+    if n <= 1:
+        return False
+    for i in range(2, int(n**0.5) + 1):
+        if n % i == 0:
+            return False
+    return True
+
+
+def remove_multiples(nums, prime):
+    """
+    This function removes the prime number and its multiples from the list.
+    """
+    new_nums = []
+    for num in nums:
+        if num % prime != 0 or num == prime:
+            new_nums.append(num)
+    return new_nums
+
+
 def isWinner(x, nums):
-    """function def"""
-    def sieve(n):
-        """helper function to generate all primes to n"""
-        primes = [True for _ in range(n+1)]
-        p = 2
-        while p * p <= n:
-            if primes[p] is True:
-                for i in range(p * p, n+1, p):
-                    primes[i] = False
-            p += 1
-        primes[0] = primes[1] = False
-        return [p for p in range(2, n+1) if primes[p]]
-
-    def game(n):
-        """actual game"""
-        primes = sieve(n)
-        return len(primes) % 2 == 1
-
-    maria_wins = sum(game(n) for n in nums)
-    ben_wins = x - maria_wins
-
+    """
+    This function determines the winner of the game for a single round.
+    """
+    maria_wins = 0
+    ben_wins = 0
+    player = "Maria"  # Start with Maria
+    for _ in range(x):
+        if not nums:
+            break
+        if player == "Maria":
+            # Maria can't choose anymore, Ben wins the round
+            ben_wins += 1
+            player = "Ben"
+        else:
+            # Ben removes the first element (not a prime)
+            nums.pop(0)
+            player = "Maria"
     if maria_wins > ben_wins:
-        return 'Maria'
+        return "Maria"
     elif ben_wins > maria_wins:
-        return 'Ben'
+        return "Ben"
     else:
         return None
